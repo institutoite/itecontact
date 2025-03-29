@@ -76,15 +76,52 @@ $(document).ready(function() {
         });
     });
 
-    function sendWhatsAppMessage(url, phone, name) {
-        let mensaje=document.getElementById('observations').value.trim();
-        const personalizedMessage = mensaje.replace('{name}', name);
-        const whatsappUrl = `https://wa.me/591${phone}?text=${encodeURIComponent(personalizedMessage)} ${url}`;
-        
-        setTimeout(() => {
-            window.open(whatsappUrl, '_blank');
-        }, 500);
-    }
+
+  /**
+ * Envía un mensaje por WhatsApp para compartir un contacto
+ * @param {string} vcfUrl - Enlace de descarga del contacto (VCF)
+ * @param {string} phone - Número de teléfono del destinatario
+ * @param {string} contactName - Nombre del contacto a compartir
+ */
+/**
+ * Envía un mensaje por WhatsApp con el contacto y enlace a ITE Contact
+ * @param {string} vcfUrl - Enlace de descarga del contacto (VCF)
+ * @param {string} phone - Número de teléfono del destinatario
+ * @param {string} contactName - Nombre del contacto a compartir
+ */
+function sendWhatsAppMessage(vcfUrl, phone, contactName) {
+    // Obtener el mensaje del usuario o usar uno por defecto
+    const userMessage = document.getElementById('observations').value.trim() || 
+                      `Te comparto mis datos de contacto: ${contactName}`;
+    
+    // Construir el mensaje completo con formato WhatsApp
+    const fullMessage = [
+        `*${userMessage}*`,  // Mensaje del usuario en negrita
+        '',
+        '📋 *Detalles del contacto:*',
+        `👤 ${contactName}`,
+        `⬇️ Descargar contacto: ${vcfUrl}`,
+        '',
+        'Powered by ITE Contact',
+        'https://itecontact.ite.com.bo'
+    ].join('\n');
+
+    // Codificar URL para WhatsApp
+    const whatsappUrl = `https://wa.me/591${phone}?text=${encodeURIComponent(fullMessage)}`;
+    
+    // Abrir en nueva pestaña con manejo de errores
+    setTimeout(() => {
+        try {
+            const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+            if (!newWindow || newWindow.closed) {
+                alert('Por favor permite ventanas emergentes para compartir el contacto');
+            }
+        } catch (error) {
+            console.error('Error al abrir WhatsApp:', error);
+            alert('Ocurrió un error al intentar compartir el contacto');
+        }
+    }, 500);
+}
    
     function resetForm() {
         form[0].reset();
