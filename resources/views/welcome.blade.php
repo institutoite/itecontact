@@ -21,7 +21,7 @@
                     <div class="logo-icon">
                         <img src="{{ asset('image/logo.png') }}" alt="Logo itecontac" class="logo-image">
                     </div>
-                    <h1>itecontac</h1>
+                    <h1>itecontact</h1>
                 </div>
                 <span class="slogan">¡Fue fácil agregarte!</span>
             </div>
