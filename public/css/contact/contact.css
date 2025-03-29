@@ -134,17 +134,17 @@ textarea {
 }
 
 .phone-input span {
-    padding: 11px 10px 12px 5px;
+    padding: 12px 12px 12px 15px;
     background: #f5f7fa;
     border: 1px solid #ddd;
     border-right: none;
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
-    font-size: 12px;
+    border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius);
+    font-size: 13px;
     white-space: nowrap;
 }
 
 .phone-input input {
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius);
     flex: 1;
     min-width: 0;
     width: 100%;
@@ -163,7 +163,7 @@ textarea {
     }
     
     .phone-input input {
-        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius);
         border-top: none;
     }
 }
@@ -265,7 +265,7 @@ textarea {
     margin-bottom: 5px;
     display: flex;
     align-items: center;
-    gap: 1px;
+    gap: 2px;
     border-radius: 4px;
 }
 

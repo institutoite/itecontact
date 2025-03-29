@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="phone"><i class="fas fa-phone"></i> Número de Teléfono</label>
                 <div class="phone-input">
-                    <span>+591</span>
+                    
                     <input type="number" id="phone" name="phone" placeholder="Ej: 60902299" value="">
                 </div>
                 <div class="error-message"></div>
