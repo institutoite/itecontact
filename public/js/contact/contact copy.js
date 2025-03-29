@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     $('#boton-guardar').click(function(e) {
         e.preventDefault();
-        clearErrors();
+        
         const formData = new FormData(form[0]);
         const submitBtn = $(this);
         
@@ -39,13 +39,13 @@ $(document).ready(function() {
                         showSuccessUI(response);
                         
                         try {
-                            sendWhatsAppMessage(response.vcf_url, response.contact.phone, response.contact.name);
+                            sendWhatsAppMessage(response.vcf_url,response.contact.phone, response.contact.name);
                         } catch (whatsappError) {
                             console.error('Error al abrir WhatsApp:', whatsappError);
                             showWarning('El contacto se guardó pero hubo un problema al abrir WhatsApp');
                         }
                         
-                        // Eliminamos el setTimeout que reseteba el formulario
+                        setTimeout(resetForm, 5000);
                     } catch (error) {
                         console.error('Error procesando respuesta:', error);
                         showError({
@@ -76,9 +76,8 @@ $(document).ready(function() {
         });
     });
 
-    function sendWhatsAppMessage(url, phone, name) {
-        let mensaje=document.getElementById('observations').value.trim();
-        const personalizedMessage = mensaje.replace('{name}', name);
+    function sendWhatsAppMessage(url,phone, name) {
+        const personalizedMessage = defaultMessage.replace('{name}', name);
         const whatsappUrl = `https://wa.me/591${phone}?text=${encodeURIComponent(personalizedMessage)} ${url}`;
         
         setTimeout(() => {
@@ -86,6 +85,7 @@ $(document).ready(function() {
         }, 500);
     }
    
+
     function resetForm() {
         form[0].reset();
         successMessage.addClass('hidden');
@@ -93,9 +93,8 @@ $(document).ready(function() {
     }
 
     function clearErrors() {
-        $('.error-message').text('').removeClass('error-message'); // Limpiar y remover clase
-        $('.error-alert').remove(); // Eliminar alertas de error
-        $('.is-invalid').removeClass('is-invalid'); // Remover clase de invalid
+        $('.error-message').text('');
+        $('.error-alert').remove();
     }
 
     function showWarning(message) {
@@ -118,39 +117,27 @@ $(document).ready(function() {
         
         if (error.errors) {
             for (const [field, messages] of Object.entries(error.errors)) {
-                const $field = $(`#${field}`);
-                $field.addClass('is-invalid');
-                $field.after(`<div class="error-message text-danger">${messages.join(', ')}</div>`);
+                $(`#${field}`).next('.error-message').text(messages.join(', '));
             }
         }
     }
-    function showSuccessUI(response) {
-        // Crear el contenido de éxito con botón para nuevo usuario
-        const successHTML = `
-            <div class="success-content">
-                <div class="success-message">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Contacto guardado con éxito</span>
-                </div>
-                
-                <div class="download-section">
-                    <button id="descargar-contacto" class="download-btn">
-                        <i class="fas fa-download"></i> Descargar Contacto (VCF)
-                    </button>
-                </div>
-                
-              
-                
-                <div class="new-contact-section">
-                    <button id="nuevo-contacto" class="new-contact-btn">
-                        <i class="fas fa-user-plus"></i> Crear nuevo contacto
-                    </button>
-                </div>
 
-                <div class="whatsapp-message hidden">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>Redirigido a WhatsApp...</span>
-                </div>
+    function showSuccessUI(response) {
+    
+        // Crear el contenido de éxito
+        const successHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>Contacto guardado con éxito</span>
+            
+            <div class="download-section">
+                <button id="descargar-contacto" class="download-btn">
+                    <i class="fas fa-download"></i> Descargar Contacto (VCF)
+                </button>
+            </div>
+            
+            <div class="whatsapp-message hidden">
+                <i class="fab fa-whatsapp"></i>
+                <span>Redirigiendo a WhatsApp...</span>
             </div>
         `;
         
@@ -166,11 +153,6 @@ $(document).ready(function() {
             window.location.href = response.vcf_url;
         });
         
-        // Configurar el botón para nuevo contacto
-        $('#nuevo-contacto').on('click', function() {
-            resetForm();
-        });
-        
         // Ocultar el formulario
         form.addClass('hidden');
         
@@ -180,8 +162,10 @@ $(document).ready(function() {
             
             // Redirigir a WhatsApp después de 2 segundos más
             setTimeout(function() {
-                sendWhatsAppMessage(response.vcf_url, response.contact.phone, response.contact.name);
+                sendWhatsAppMessage(response.contact.phone, response.contact.name);
             }, 1000);
         }, 10000);
     }
+    
+    
 });

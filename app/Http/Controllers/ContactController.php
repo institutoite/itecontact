@@ -49,20 +49,27 @@ class ContactController extends Controller
 
      public function store(Request $request)
      {
-         $validated = $request->validate([
-             'name' => 'required|string|max:255',
-             'phone' => 'required|string|min:8|max:15',
-             'observations' => 'nullable|string'
-         ]);
- 
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|min:8|max:15',
+            'observations' => 'nullable|string'
+        ], [
+            'name.required' => 'El nombre es obligatorio',
+            'name.max' => 'El nombre no debe exceder los 255 caracteres',
+            'phone.required' => 'El teléfono es obligatorio',
+            'phone.min' => 'El teléfono debe tener al menos 8 dígitos',
+            'phone.max' => 'El teléfono no debe exceder los 15 dígitos'
+        ]);
+
          // Crear el contacto
-         $contact = Contact::create([
-             'name' => $validated['name'],
-             'phone' => $validated['phone'],
-             'observations' => $validated['observations'] ?? null,
-             'user_id' => auth()->id(),
-             'status' => 'No Registrado'
-         ]);
+        $contact = Contact::create([
+            'name' => $validated['name'],
+            'phone' => $validated['phone'],
+            'observations' => $validated['observations'] ?? null,
+            // 'user_id' => auth()->id(),
+            'user_id' => 1,
+            'status' => 'No Registrado'
+        ]);
  
          // Generar URL para descargar VCF
          $vcfUrl = route('contacts.download.vcf', $contact);
@@ -83,7 +90,7 @@ class ContactController extends Controller
      {
          $vcfContent = $this->generateVCF($contact);
          $filename = "contacto_{$contact->name}.vcf";
-         $filename = preg_replace('/[^a-z0-9_\-]/i', '_', $filename);
+        //$filename = preg_replace('/[^a-z0-9_\-]/i', '_', $filename);
  
          return response($vcfContent)
              ->header('Content-Type', 'text/vcard')

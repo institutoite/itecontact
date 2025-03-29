@@ -18,7 +18,7 @@ use App\Http\Controllers\ProfileController;
 |
 */
 Route::get('/', function () {
-    return redirect('/admin/login');
+    return view('welcome');
 })->name("welcome");
 
 Route::middleware('auth')->group(function () {

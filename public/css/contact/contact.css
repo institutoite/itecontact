@@ -13,7 +13,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f7fa;
     margin: 0;
-    padding: 20px;
+    padding: 1px;
 }
 
 .contact-form-container {
@@ -85,13 +85,13 @@ body {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 2px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 0px;
 }
 
 .form-group label {
@@ -126,23 +126,48 @@ textarea {
     resize: vertical;
 }
 
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 .phone-input {
     display: flex;
+    width: 100%;
     align-items: center;
 }
 
 .phone-input span {
-    padding: 12px 10px 12px 15px;
+    padding: 11px 10px 12px 5px;
     background: #f5f7fa;
     border: 1px solid #ddd;
     border-right: none;
     border-radius: var(--border-radius) 0 0 var(--border-radius);
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 .phone-input input {
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
     flex: 1;
+    min-width: 0;
+    width: 100%;
 }
+
+/* Media query para móviles */
+@media (max-width: 480px) {
+    .phone-input {
+        flex-wrap: wrap;
+    }
+    
+    .phone-input span {
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        border-right: 1px solid #ddd;
+        border-bottom: none;
+    }
+    
+    .phone-input input {
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        border-top: none;
+    }
+}
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
 .hint {
     font-size: 13px;
@@ -204,6 +229,7 @@ textarea {
     .primary-btn, .secondary-btn {
         justify-content: center;
     }
+   
 }
 
 /* (Mantener todos los estilos anteriores y agregar estos) */
@@ -481,4 +507,82 @@ textarea {
 
 .show {
     display: block;
+}
+
+/*mensaje de exito */
+/* Contenedor principal del mensaje de éxito */
+.success-message {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Sección de botones contenedora */
+.download-section, 
+.new-contact-section {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+}
+
+/* Estilos base para ambos botones */
+.download-btn,
+.new-contact-btn {
+    width: 250px; /* Mismo ancho para ambos */
+    padding: 12px 0; /* Mismo padding vertical */
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Estilo específico para el botón de descarga */
+.download-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: var(--secondary-hover);
+    transform: translateY(-2px);
+}
+
+/* Estilo específico para el botón de nuevo contacto */
+.new-contact-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.new-contact-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* Iconos dentro de los botones */
+.download-btn i,
+.new-contact-btn i {
+    font-size: 14px;
+    color: white;
+}
+
+/* Mensaje de WhatsApp */
+.whatsapp-message {
+    text-align: center;
+    margin-top: 15px;
+    color: #25D366;
+}
+
+/* Contenedor del éxito para alinear todo al centro */
+.success-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }

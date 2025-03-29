@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Nuevo Contacto</title>
+    <title>itecontact</title>
     {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/contact/contact.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contact/globos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contact/header.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="contact-form-container">
         <!-- Header -->
         <header class="form-header">
-            <h1><i class="fas fa-user-plus"></i> Nuevo Contacto</h1>
-            <a href="{{ route('contacts.index') }}" class="back-link">
-                <i class="fas fa-arrow-left"></i> Volver
-            </a>
+            <div class="logo-wrapper">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-comment-dots"></i>
+                        <i class="fas fa-user-plus logo-small"></i>
+                    </div>
+                    <h1>itecontac</h1>
+                </div>
+                <span class="slogan">¡Fue fácil agregarte!</span>
+            </div>
+          
         </header>
 
         <!-- Mensaje de éxito (oculto inicialmente) -->
@@ -38,26 +47,31 @@
             
             <div class="form-group">
                 <label for="name"><i class="fas fa-user"></i> Nombre del Contacto</label>
-                <input type="text" id="name" name="name" value="David Eduardo flores Mamani" >
+                <input type="text" id="name" name="name" placeholder="Ingresa un nombre del contacto" value="" >
                 <div class="error-message"></div>
             </div>
             
             <div class="form-group">
                 <label for="phone"><i class="fas fa-phone"></i> Número de Teléfono</label>
                 <div class="phone-input">
-                    <span>+</span>
-                    <input type="text" id="phone" name="phone" placeholder="Ej: 5491112345678" value="71039910">
+                    <span>+591</span>
+                    <input type="number" id="phone" name="phone" placeholder="Ej: 60902299" value="">
                 </div>
                 <div class="error-message"></div>
                 
             </div>
             <div class="form-group">
                 <label for="observations"><i class="fas fa-edit"></i> Mensaje</label>
-                <textarea id="observations" name="observations" rows="3">este es un comentaio</textarea>
+                <div class="message-buttons">
+                    <button class="message-bubble" data-text=".">.</button>
+                    <button class="message-bubble" data-text="Hola">Hola</button>
+                    <button class="message-bubble" data-text="Este es mi número soy: ">Presentación</button>
+                    <button class="message-bubble" data-text="¿Cómo estás?">¿Cómo estás?</button>
+                    <button class="message-bubble" data-text="Te contacto por: ">Motivo</button>
+                </div>
+                <textarea id="observations" name="observations" rows="2"></textarea>
             </div>
 
-
-                     
             <div id="success-message" class="success-alert hidden">
                 <i class="fas fa-check-circle"></i>
                 <span>Contacto guardado con éxito</span>
@@ -80,11 +94,6 @@
                     <span>Redirigiendo a WhatsApp...</span>
                 </div>
             </div>
-
-
-
-    
-
             <!-- Botones -->
             <div class="form-actions">
                 <button type="submit" id="boton-guardar" class="primary-btn">
@@ -96,5 +105,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('js/contact/contact.js') }}"></script>
+    <script src="{{ asset('js/contact/globos.js') }}"></script>
 </body>
 </html>
