@@ -62,7 +62,7 @@ body {
 
 /* Mensaje de éxito */
 .success-alert {
-    padding: 15px;
+    padding: 2px;
     background-color: rgba(40, 167, 69, 0.1);
     border-left: 4px solid var(--success-color);
     color: var(--success-color);
@@ -111,7 +111,8 @@ input, textarea {
     padding: 12px 15px;
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
-    font-size: 16px;
+    /* font-size: 16px; */
+    font-size: 1.2em;
     transition: var(--transition);
 }
 
@@ -131,6 +132,7 @@ textarea {
     display: flex;
     width: 100%;
     align-items: center;
+    
 }
 
 .phone-input span {
@@ -148,12 +150,14 @@ textarea {
     flex: 1;
     min-width: 0;
     width: 100%;
+    font-size: 0.5em;
 }
 
 /* Media query para móviles */
 @media (max-width: 480px) {
     .phone-input {
         flex-wrap: wrap;
+        
     }
     
     .phone-input span {
@@ -165,6 +169,7 @@ textarea {
     .phone-input input {
         border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius);
         border-top: none;
+        font-size: 1.5em;
     }
 }
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -324,7 +329,7 @@ textarea {
 
 .success-actions {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     margin-top: 15px;
     flex-wrap: wrap;
 }
@@ -416,12 +421,20 @@ textarea {
         width: 100%;
         justify-content: center;
     }
+    .success-alert {
+        background: #e8f5e9;
+        padding: 1px;
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    
 }
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% mensaje de exito $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 .success-alert {
     background: #e8f5e9;
-    padding: 20px;
+    padding: 1px;
     border-radius: 8px;
     margin-top: 20px;
     text-align: center;
@@ -470,7 +483,7 @@ textarea {
 }*/
 
 .success-alert i {
-    font-size: 2em;
+    font-size: 1.5em;
     color: #4CAF50;
     margin-bottom: 10px;
 }
@@ -584,5 +597,5 @@ textarea {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 5px;
 }
