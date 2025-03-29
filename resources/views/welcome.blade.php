@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>itecontact</title>
+
+    <link rel="icon" href="{{ asset('image/ite.ico') }}" type="image/x-icon">
     {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/contact/contact.css') }}">
     <link rel="stylesheet" href="{{ asset('css/contact/globos.css') }}">
@@ -17,14 +19,12 @@
             <div class="logo-wrapper">
                 <div class="logo-container">
                     <div class="logo-icon">
-                        <i class="fas fa-comment-dots"></i>
-                        <i class="fas fa-user-plus logo-small"></i>
+                        <img src="{{ asset('image/logo.png') }}" alt="Logo itecontac" class="logo-image">
                     </div>
                     <h1>itecontac</h1>
                 </div>
                 <span class="slogan">¡Fue fácil agregarte!</span>
             </div>
-          
         </header>
 
         <!-- Mensaje de éxito (oculto inicialmente) -->
@@ -47,7 +47,7 @@
             
             <div class="form-group">
                 <label for="name"><i class="fas fa-user"></i> Nombre del Contacto</label>
-                <input type="text" id="name" name="name" placeholder="Ingresa un nombre del contacto" value="" >
+                <input type="text" id="name" name="name" placeholder="" value="" >
                 <div class="error-message"></div>
             </div>
             
