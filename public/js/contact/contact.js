@@ -102,7 +102,7 @@ function sendWhatsAppMessage(vcfUrl, phone, contactName) {
         `👤 ${contactName}`,
         `⬇️ Descargar contacto: ${vcfUrl}`,
         '',
-        'Powered by ITE Contact',
+        '_Enviado por itecontac_',
         'https://itecontact.ite.com.bo'
     ].join('\n');
 
